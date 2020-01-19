@@ -7,6 +7,6 @@
 	"settings": {
 		"python.envFile": "${workspaceFolder}/.venv_private_diary",
 		"python.pythonPath": "${workspaceFolder}/venv_private_diary/Scripts/python.exe",
-		"python.venvPath": "./venv_private_diary"
+		"python.venvPath": ".venv_private_diary"
 	}
 }
