@@ -1,0 +1,74 @@
+<!-- staticディレクトリのcssからstaticタグをロード -->
+{% load static %}
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-widh,initial-scale=1,
+            shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" conten="">
+        <!-- 各ページのタイトルをここに埋め込む -->
+        <title>{% block title %}{% endblock %}</title>
+        <!-- bootstrapのCSS -->
+        <!-- 一番最初にロードしたstaticタグを使って、相対パスvendor/bootstrap/css/bootstrap.min.cssを記述している -->
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Custom template -->
+        <link href="{% static 'css/one-page-wonder.min.css' %}" rel="stylesheet">
+        <!-- My style -->
+        <link type="text/css" href="{% static 'css/mystyle.css' %}" rel="stylesheet">
+        <!-- 各ページ固有のヘッダー情報をここに埋め込む -->
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <!-- divタグはブロック。このブロックはフッターを最下部に固定するために使ってるらしい。 -->
+        <div id="wrapper">
+            <!-- Navication -->
+            <nav  class="navbar navbar-expand-lg navbar-dark navbar-customfixed-top">
+                <div class="container">
+                    <!-- aはリンクにつかう
+                        ナビゲーションバーのPRIVATE DIARYをURLにする
+                        diary:indexはdiaryアプリにあるurls.pyでindexという名前のルーティングを参照する
+                     -->
+                    <a class="navbar-brand" href="{% url 'diary:index' %}">PRIVATE DIARY</a>
+                    <!--data-toggleにcollapse, data-targetに#nabarResponsivとしていることで、
+                    #nabarResponsiveのタグがついておりdata-toggleで指定したクラスの場合、On-Offすることができる-->
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggle-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item {% block active_inquiry %}{% endblock %}">
+                                <!-- href="#"は、そのページの最上部へのリンクという意味 -->
+                                <a class="nav-link" href="#">INQUIRY</a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="nav-item">
+                                <!-- href="#"は、そのページの最上部へのリンクという意味 -->
+                                <a class="nav-link" href="#">Sign Up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Log In</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- 各ページのヘッダーをここに埋めこむ -->
+            {% block header %}{% endblock %}
+            <!-- 各ページのコンテンツをここに埋め込む -->
+            {% block content %}{% endblock %}
+            <!-- Footer -->
+            <footer class="py-5 bg-black">
+                <div class="container">
+                    <!-- pタグは段落 -->
+                    <p class="m-0 text-center text-white small">Copyright &copy;Private Dairy 2020</p>
+                </div>
+                <!-- /.container -->
+            </footer>
+            <!-- Bootstrap core JavaScript -->
+            <!-- 静的ファイルとして読み込んだbootstrap用ライブラリの読み込み -->
+            <script src="{% static 'vendor/jquery/jquery.min.js'}"></script>
+        </div>
+    </body>
+</html>

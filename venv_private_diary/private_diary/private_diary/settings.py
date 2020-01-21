@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # diary/app.py内のDiaryConfigクラスを指す
-    'django.apps.DiaryConfig'
+    'diary.apps.DiaryConfig'
 ]
 
 MIDDLEWARE = [
@@ -166,3 +166,8 @@ LOGGING={
         }
     }
 }
+
+# BASE_DIRは、このプロジェクトの絶対パスが定義されてるので、STATICFILES_DIRはstaticまでの絶対パスが入ってる
+STATICFILES_DIRS=(
+    os.path.join(BASE_DIR,"static"),
+    )

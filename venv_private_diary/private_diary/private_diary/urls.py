@@ -18,5 +18,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # 全てのurlをdiary/urls.pyで処理する
     path("",include('diary.urls'))
 ]
